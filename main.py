@@ -3,6 +3,7 @@ from operaciones_drive import (
     listar_archivos, buscar_archivos, subir_archivo,
     descargar_archivo, eliminar_archivo
 )
+from integridad import verificar_integridad
 
 def main():
     servicio = conectar_drive()
@@ -13,7 +14,8 @@ def main():
         print('3. Subir archivo')
         print('4. Descargar archivo')
         print('5. Eliminar archivo')
-        print('6. Sarlir')
+        print('6. Comprobar integridad (SHA-256)')
+        print('7. Sarlir')
         opcion = input('Seleccione: ')
         try:
             if opcion == '1': listar_archivos(servicio)
@@ -30,7 +32,11 @@ def main():
             elif opcion == '5':
                 archivo_id = input('ID: ')
                 eliminar_archivo(servicio, archivo_id)
-            elif opcion == '6': break
+            elif opcion == '6': 
+                original = input('Ruta del archivo original: ')
+                copia = input('Ruta del archivo descargado en Drive: ')
+                verificar_integridad(original, copia)
+            elif opcion == '7': break
             else: print('Opción inválida')
         except Exception as error: print('Error:', error)
 

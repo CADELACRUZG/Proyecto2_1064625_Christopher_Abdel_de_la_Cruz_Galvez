@@ -42,7 +42,7 @@ def descargar_archivo(servicio, archivo_id, destino):
 
 def eliminar_archivo(servicio, archivo_id):
     confirmacion = input(
-        'Escriba ELIMINAR para confirmar'
+        'Escriba ELIMINAR para confirmar '
     )
 
     if confirmacion != 'ELIMINAR':
