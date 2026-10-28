@@ -5,7 +5,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
 SCOPES = [
-    'https://www.googleleapis.com/auth/drive'
+    'https://www.googleapis.com/auth/drive'
 ]
 
 def conectar_drive():
@@ -14,7 +14,7 @@ def conectar_drive():
         credenciales = Credentials.from_authorized_user_file('token.json', SCOPES)
     if not credenciales or not credenciales.valid:
         if (credenciales and credenciales.expired
-            and credenciales.regresh_token):
+            and credenciales.refresh_token):
             credenciales.refresh(Request())
         else:
             flujo = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
